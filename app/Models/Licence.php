@@ -14,4 +14,13 @@ class Licence extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->birth_date = date('Y', strtotime($model->birth_date));
+            $model->birth_date_en = date('Y', strtotime($model->birth_date_en));
+            $model->user_id = auth()->user()->id ?? 1;
+        });
+    }
 }
