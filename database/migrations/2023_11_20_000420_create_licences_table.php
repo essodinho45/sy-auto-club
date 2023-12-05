@@ -8,8 +8,7 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void {
         Schema::create('licences', function (Blueprint $table) {
             $table->id();
             $table->string('licence_number');
@@ -20,13 +19,13 @@ return new class extends Migration {
             $table->string('second_name');
             $table->string('father_name');
             $table->string('birth_place');
-            $table->year('birth_date');
+            $table->date('birth_date');
             $table->string('residence_place');
             $table->string('first_name_en');
             $table->string('second_name_en');
             $table->string('father_name_en');
             $table->string('birth_place_en');
-            $table->year('birth_date_en');
+            $table->date('birth_date_en');
             $table->string('residence_place_en');
             $table->string('phone');
             $table->string('email');
@@ -39,8 +38,7 @@ return new class extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('licences');
     }
 };
