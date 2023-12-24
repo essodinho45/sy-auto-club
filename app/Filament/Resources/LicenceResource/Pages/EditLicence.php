@@ -24,8 +24,8 @@ class EditLicence extends EditRecord {
         return [
             Step::make('General')->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([
                         TextInput::make('licence_number')
                             ->required()
@@ -67,8 +67,8 @@ class EditLicence extends EditRecord {
                     ]),
             Step::make('English')->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([TextInput::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en'))
                             ->required()
@@ -95,8 +95,8 @@ class EditLicence extends EditRecord {
                     ]),
             Step::make('Contact')->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([TextInput::make('phone')
                             ->label(__('filament-panels::pages/licence.form.phone'))
                             ->required()
@@ -119,37 +119,36 @@ class EditLicence extends EditRecord {
             ])->schema([
                         FileUpload::make('personal')
                             ->label(__('filament-panels::pages/licence.form.files.personal'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence_f')
                             ->label(__('filament-panels::pages/licence.form.files.licence_f'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence_b')
                             ->label(__('filament-panels::pages/licence.form.files.licence_b'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence1')
                             ->label(__('filament-panels::pages/licence.form.files.licence1'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence2')
                             ->label(__('filament-panels::pages/licence.form.files.licence2'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('id_f')
                             ->label(__('filament-panels::pages/licence.form.files.id_f'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('id_b')
                             ->label(__('filament-panels::pages/licence.form.files.id_b'))
+                            ->image()
                             ->required(false),
                     ]),
         ];
     }
     protected function mutateFormDataBeforeSave(array $data): array {
-        unset($data['personal']);
-        unset($data['licence_f']);
-        unset($data['licence_b']);
-        unset($data['licence1']);
-        unset($data['licence2']);
-        unset($data['id_f']);
-        unset($data['id_b']);
-
         return $data;
     }
 }

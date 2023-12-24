@@ -16,11 +16,13 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 
 class LicenceResource extends Resource {
     protected static ?string $model = Licence::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function getNavigationLabel(): string {
         return __('filament-panels::pages/licence.licence');
@@ -35,6 +37,10 @@ class LicenceResource extends Resource {
     public static function table(Table $table): Table {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('first_name')
+                    ->label(__('filament-panels::pages/licence.form.first_name')),
+                Tables\Columns\TextColumn::make('second_name')
+                    ->label(__('filament-panels::pages/licence.form.second_name')),
                 Tables\Columns\TextColumn::make('licence_number')
                     ->label(__('filament-panels::pages/licence.form.licence_number')),
                 Tables\Columns\TextColumn::make('valid_to')
@@ -44,6 +50,7 @@ class LicenceResource extends Resource {
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -53,6 +60,16 @@ class LicenceResource extends Resource {
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
+            ]);
+    }
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\TextEntry::make('licence_number')
+                    ->label(__('filament-panels::pages/licence.form.licence_number')),
+                Infolists\Components\TextEntry::make('valid_to')
+                    ->label(__('filament-panels::pages/licence.form.valid_to')),
             ]);
     }
 
@@ -66,6 +83,7 @@ class LicenceResource extends Resource {
         return [
             'index' => Pages\ListLicences::route('/'),
             'create' => Pages\CreateLicence::route('/create'),
+            'view' => Pages\ViewLicence::route('/{record}'),
             'edit' => Pages\EditLicence::route('/{record}/edit'),
         ];
     }
