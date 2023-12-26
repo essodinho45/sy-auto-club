@@ -25,7 +25,7 @@ class LicenceResource extends Resource {
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function getNavigationLabel(): string {
-        return __('filament-panels::pages/licence.licence');
+        return __('filament-panels::pages/licence.licences');
     }
     public static function getModelLabel(): string {
         return __('filament-panels::pages/licence.licence');
@@ -52,11 +52,12 @@ class LicenceResource extends Resource {
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->hidden(!auth()->user()->hasRole('admin')),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+//                Tables\Actions\BulkActionGroup::make([
+//                    Tables\Actions\DeleteBulkAction::make(),
+//                ]),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
