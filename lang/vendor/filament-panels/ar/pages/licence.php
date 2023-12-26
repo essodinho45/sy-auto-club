@@ -4,7 +4,15 @@ return [
 
     'licence' => 'الرخصة',
     'licences' => 'الرخص',
+    'approve' => 'تأكيد الرخصة',
+    'approved' => 'الرخصة مؤكدة',
 
+    'wizard' => [
+        'general' => 'عام',
+        'english' => 'English',
+        'contact' => 'معلومات التواصل',
+        'files' => 'ملفات',
+    ],
     'form' => [
         'licence_number' => 'رقم الرخصة',
         'valid_to' => 'صالح حتى',

@@ -66,10 +66,93 @@ class LicenceResource extends Resource {
     {
         return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('licence_number')
+                Infolists\Components\Section::make()
+                    ->columns([
+                    'default' => 1,
+                    'xl' => 4,
+                    '2xl' => 6,])
+                    ->schema([
+                    Infolists\Components\TextEntry::make('licence_number')
                     ->label(__('filament-panels::pages/licence.form.licence_number')),
-                Infolists\Components\TextEntry::make('valid_to')
-                    ->label(__('filament-panels::pages/licence.form.valid_to')),
+                    Infolists\Components\TextEntry::make('valid_to')
+                        ->label(__('filament-panels::pages/licence.form.valid_to')),
+                    Infolists\Components\TextEntry::make('driving_licence_number')
+                        ->label(__('filament-panels::pages/licence.form.driving_licence_number')),
+                    Infolists\Components\TextEntry::make('driving_valid_to')
+                        ->label(__('filament-panels::pages/licence.form.driving_valid_to')),
+                ]),
+                Infolists\Components\Section::make()
+                    ->columns([
+                    'default' => 1,
+                    'xl' => 4,
+                    '2xl' => 6,])
+                    ->schema([
+                        Infolists\Components\TextEntry::make('first_name')
+                            ->label(__('filament-panels::pages/licence.form.first_name')),
+                        Infolists\Components\TextEntry::make('second_name')
+                            ->label(__('filament-panels::pages/licence.form.second_name')),
+                        Infolists\Components\TextEntry::make('father_name')
+                            ->label(__('filament-panels::pages/licence.form.father_name')),
+                        Infolists\Components\TextEntry::make('birth_place')
+                            ->label(__('filament-panels::pages/licence.form.birth_place')),
+                        Infolists\Components\TextEntry::make('birth_date')
+                            ->label(__('filament-panels::pages/licence.form.birth_date')),
+                        Infolists\Components\TextEntry::make('residence_place')
+                            ->label(__('filament-panels::pages/licence.form.residence_place')),
+                ]),
+                Infolists\Components\Section::make()
+                    ->columns([
+                    'default' => 1,
+                    'xl' => 4,
+                    '2xl' => 6,])
+                    ->schema([
+                        Infolists\Components\TextEntry::make('phone')
+                            ->label(__('filament-panels::pages/licence.form.phone')),
+                        Infolists\Components\TextEntry::make('email')
+                            ->label(__('filament-panels::pages/licence.form.email')),
+                        Infolists\Components\TextEntry::make('note')
+                            ->label(__('filament-panels::pages/licence.form.note')),
+                ]),
+                Infolists\Components\Section::make()
+                    ->columns([
+                    'default' => 1,
+                    'xl' => 4,
+                    '2xl' => 6,])
+                    ->schema([
+                        Infolists\Components\TextEntry::make('first_name_en')
+                            ->label(__('filament-panels::pages/licence.form.first_name_en')),
+                        Infolists\Components\TextEntry::make('second_name_en')
+                            ->label(__('filament-panels::pages/licence.form.second_name_en')),
+                        Infolists\Components\TextEntry::make('father_name_en')
+                            ->label(__('filament-panels::pages/licence.form.father_name_en')),
+                        Infolists\Components\TextEntry::make('birth_place_en')
+                            ->label(__('filament-panels::pages/licence.form.birth_place_en')),
+                        Infolists\Components\TextEntry::make('birth_date_en')
+                            ->label(__('filament-panels::pages/licence.form.birth_date_en')),
+                        Infolists\Components\TextEntry::make('residence_place_en')
+                            ->label(__('filament-panels::pages/licence.form.residence_place_en')),
+                ]),
+                Infolists\Components\Section::make()
+                    ->columns([
+                    'default' => 1,
+                    'xl' => 2,
+                    '2xl' => 3,])
+                    ->schema([
+                        Infolists\Components\ImageEntry::make('personal')
+                            ->label(__('filament-panels::pages/licence.form.files.personal')),
+                        Infolists\Components\ImageEntry::make('licence_f')
+                            ->label(__('filament-panels::pages/licence.form.files.licence_f')),
+                        Infolists\Components\ImageEntry::make('licence_b')
+                            ->label(__('filament-panels::pages/licence.form.files.licence_b')),
+                        Infolists\Components\ImageEntry::make('licence1')
+                            ->label(__('filament-panels::pages/licence.form.files.licence1')),
+                        Infolists\Components\ImageEntry::make('licence2')
+                            ->label(__('filament-panels::pages/licence.form.files.licence2')),
+                        Infolists\Components\ImageEntry::make('id_f')
+                            ->label(__('filament-panels::pages/licence.form.files.id_f')),
+                        Infolists\Components\ImageEntry::make('id_b')
+                            ->label(__('filament-panels::pages/licence.form.files.id_b')),
+                ]),
             ]);
     }
 

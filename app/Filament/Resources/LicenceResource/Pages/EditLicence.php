@@ -22,7 +22,7 @@ class EditLicence extends EditRecord {
     }
     protected function getSteps(): array {
         return [
-            Step::make('General')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.general'))->columns([
                 'default' => 1,
                 'xl' => 2,
                 '2xl' => 4,
@@ -65,7 +65,7 @@ class EditLicence extends EditRecord {
                             ->required()
                             ->maxLength(255),
                     ]),
-            Step::make('English')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.english'))->columns([
                 'default' => 1,
                 'xl' => 2,
                 '2xl' => 4,
@@ -93,7 +93,7 @@ class EditLicence extends EditRecord {
                             ->required()
                             ->maxLength(255),
                     ]),
-            Step::make('Contact')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.contact'))->columns([
                 'default' => 1,
                 'xl' => 2,
                 '2xl' => 4,
@@ -112,7 +112,7 @@ class EditLicence extends EditRecord {
                             ->columnSpan(2)
                             ->maxLength(255),
                     ]),
-            Step::make('Files')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.files'))->columns([
                 'default' => 1,
                 'xl' => 3,
                 '2xl' => 4,
