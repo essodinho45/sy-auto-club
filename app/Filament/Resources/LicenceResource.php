@@ -54,8 +54,8 @@ class LicenceResource extends Resource
             ->filters([
                 //
             ])
-            ->recordClasses(fn(Model $record) => match ($record->approved) {
-                true => 'bg-green-500/50',
+            ->recordClasses(fn(Licence $record) => match ($record->approved) {
+                1 => 'bg-green-500/50',
                 default => null,
             })
             ->actions([
