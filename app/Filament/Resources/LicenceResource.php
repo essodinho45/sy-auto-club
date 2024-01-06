@@ -19,22 +19,27 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 
-class LicenceResource extends Resource {
+class LicenceResource extends Resource
+{
     protected static ?string $model = Licence::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
         return __('filament-panels::pages/licence.licences');
     }
-    public static function getModelLabel(): string {
+    public static function getModelLabel(): string
+    {
         return __('filament-panels::pages/licence.licence');
     }
-    public static function getPluralModelLabel(): string {
+    public static function getPluralModelLabel(): string
+    {
         return __('filament-panels::pages/licence.licences');
     }
 
-    public static function table(Table $table): Table {
+    public static function table(Table $table): Table
+    {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('first_name')
@@ -49,13 +54,17 @@ class LicenceResource extends Resource {
             ->filters([
                 //
             ])
+            ->recordClasses(fn(Model $record) => match ($record->approved) {
+                true => 'bg-green-500/50',
+                default => null,
+            })
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->hidden(!auth()->user()->hasRole('admin')),
             ])
             ->bulkActions([
-//                Tables\Actions\BulkActionGroup::make([
+                //                Tables\Actions\BulkActionGroup::make([
 //                    Tables\Actions\DeleteBulkAction::make(),
 //                ]),
             ])
@@ -69,24 +78,26 @@ class LicenceResource extends Resource {
             ->schema([
                 Infolists\Components\Section::make()
                     ->columns([
-                    'default' => 1,
-                    'xl' => 4,
-                    '2xl' => 6,])
+                        'default' => 1,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
                     ->schema([
-                    Infolists\Components\TextEntry::make('licence_number')
-                    ->label(__('filament-panels::pages/licence.form.licence_number')),
-                    Infolists\Components\TextEntry::make('valid_to')
-                        ->label(__('filament-panels::pages/licence.form.valid_to')),
-                    Infolists\Components\TextEntry::make('driving_licence_number')
-                        ->label(__('filament-panels::pages/licence.form.driving_licence_number')),
-                    Infolists\Components\TextEntry::make('driving_valid_to')
-                        ->label(__('filament-panels::pages/licence.form.driving_valid_to')),
-                ]),
+                        Infolists\Components\TextEntry::make('licence_number')
+                            ->label(__('filament-panels::pages/licence.form.licence_number')),
+                        Infolists\Components\TextEntry::make('valid_to')
+                            ->label(__('filament-panels::pages/licence.form.valid_to')),
+                        Infolists\Components\TextEntry::make('driving_licence_number')
+                            ->label(__('filament-panels::pages/licence.form.driving_licence_number')),
+                        Infolists\Components\TextEntry::make('driving_valid_to')
+                            ->label(__('filament-panels::pages/licence.form.driving_valid_to')),
+                    ]),
                 Infolists\Components\Section::make()
                     ->columns([
-                    'default' => 1,
-                    'xl' => 4,
-                    '2xl' => 6,])
+                        'default' => 1,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
                     ->schema([
                         Infolists\Components\TextEntry::make('first_name')
                             ->label(__('filament-panels::pages/licence.form.first_name')),
@@ -100,12 +111,13 @@ class LicenceResource extends Resource {
                             ->label(__('filament-panels::pages/licence.form.birth_date')),
                         Infolists\Components\TextEntry::make('residence_place')
                             ->label(__('filament-panels::pages/licence.form.residence_place')),
-                ]),
+                    ]),
                 Infolists\Components\Section::make()
                     ->columns([
-                    'default' => 1,
-                    'xl' => 4,
-                    '2xl' => 6,])
+                        'default' => 1,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
                     ->schema([
                         Infolists\Components\TextEntry::make('phone')
                             ->label(__('filament-panels::pages/licence.form.phone')),
@@ -113,12 +125,13 @@ class LicenceResource extends Resource {
                             ->label(__('filament-panels::pages/licence.form.email')),
                         Infolists\Components\TextEntry::make('note')
                             ->label(__('filament-panels::pages/licence.form.note')),
-                ]),
+                    ]),
                 Infolists\Components\Section::make()
                     ->columns([
-                    'default' => 1,
-                    'xl' => 4,
-                    '2xl' => 6,])
+                        'default' => 1,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
                     ->schema([
                         Infolists\Components\TextEntry::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en')),
@@ -132,12 +145,13 @@ class LicenceResource extends Resource {
                             ->label(__('filament-panels::pages/licence.form.birth_date_en')),
                         Infolists\Components\TextEntry::make('residence_place_en')
                             ->label(__('filament-panels::pages/licence.form.residence_place_en')),
-                ]),
+                    ]),
                 Infolists\Components\Section::make()
                     ->columns([
-                    'default' => 1,
-                    'xl' => 2,
-                    '2xl' => 3,])
+                        'default' => 1,
+                        'xl' => 2,
+                        '2xl' => 3,
+                    ])
                     ->schema([
                         Infolists\Components\ImageEntry::make('personal')
                             ->label(__('filament-panels::pages/licence.form.files.personal')),
@@ -153,17 +167,19 @@ class LicenceResource extends Resource {
                             ->label(__('filament-panels::pages/licence.form.files.id_f')),
                         Infolists\Components\ImageEntry::make('id_b')
                             ->label(__('filament-panels::pages/licence.form.files.id_b')),
-                ]),
+                    ]),
             ]);
     }
 
-    public static function getRelations(): array {
+    public static function getRelations(): array
+    {
         return [
             //
         ];
     }
 
-    public static function getPages(): array {
+    public static function getPages(): array
+    {
         return [
             'index' => Pages\ListLicences::route('/'),
             'create' => Pages\CreateLicence::route('/create'),
