@@ -9,7 +9,6 @@ use Filament\Actions\Action;
 
 class ViewLicence extends ViewRecord
 {
-    protected $listeners = ['approveLicence' => '$refresh'];
     protected static string $resource = LicenceResource::class;
     protected function getActions(): array
     {
@@ -33,7 +32,7 @@ class ViewLicence extends ViewRecord
         if (auth()->user()->hasRole('admin')) {
             $this->record->approved = true;
             $this->record->save();
-            $this->emit('approveLicence');
         }
+
     }
 }
