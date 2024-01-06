@@ -18,10 +18,10 @@ class CreateLicence extends CreateRecord
     protected function getSteps(): array
     {
         return [
-            Step::make('General')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.general'))->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([
                         // TextInput::make('licence_number')
                         //     ->required()
@@ -61,10 +61,10 @@ class CreateLicence extends CreateRecord
                             ->required()
                             ->maxLength(255),
                     ]),
-            Step::make('English')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.english'))->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([
                         TextInput::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en'))
@@ -90,10 +90,10 @@ class CreateLicence extends CreateRecord
                             ->required()
                             ->maxLength(255),
                     ]),
-            Step::make('Contact')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.contact'))->columns([
                 'default' => 1,
-                'xl' => 4,
-                '2xl' => 8,
+                'xl' => 2,
+                '2xl' => 4,
             ])->schema([
                         TextInput::make('phone')
                             ->label(__('filament-panels::pages/licence.form.phone'))
@@ -110,45 +110,44 @@ class CreateLicence extends CreateRecord
                             ->columnSpan(2)
                             ->maxLength(255),
                     ]),
-            Step::make('Files')->columns([
+            Step::make(__('filament-panels::pages/licence.wizard.files'))->columns([
                 'default' => 1,
                 'xl' => 3,
                 '2xl' => 4,
             ])->schema([
                         FileUpload::make('personal')
                             ->label(__('filament-panels::pages/licence.form.files.personal'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence_f')
                             ->label(__('filament-panels::pages/licence.form.files.licence_f'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence_b')
                             ->label(__('filament-panels::pages/licence.form.files.licence_b'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence1')
                             ->label(__('filament-panels::pages/licence.form.files.licence1'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('licence2')
                             ->label(__('filament-panels::pages/licence.form.files.licence2'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('id_f')
                             ->label(__('filament-panels::pages/licence.form.files.id_f'))
+                            ->image()
                             ->required(false),
                         FileUpload::make('id_b')
                             ->label(__('filament-panels::pages/licence.form.files.id_b'))
+                            ->image()
                             ->required(false),
                     ]),
         ];
     }
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        unset($data['personal']);
-        unset($data['licence_f']);
-        unset($data['licence_b']);
-        unset($data['licence1']);
-        unset($data['licence2']);
-        unset($data['id_f']);
-        unset($data['id_b']);
-
         return $data;
     }
 }
