@@ -9,31 +9,31 @@ use Filament\Actions\Action;
 
 class ViewLicence extends ViewRecord
 {
+    protected $listeners = ['approveLicence' => '$refresh'];
     protected static string $resource = LicenceResource::class;
     protected function getActions(): array
     {
         $custom_actions = [];
-        if(auth()->user()->hasRole('admin'))
-        {
-            if(!$this->record->approved)
+        if (auth()->user()->hasRole('admin')) {
+            if (!$this->record->approved)
                 $custom_actions[] =
                     Action::make('approve')
-                    ->label(__('filament-panels::pages/licence.approve'))
-                    ->action('approveLicence');
+                        ->label(__('filament-panels::pages/licence.approve'))
+                        ->action('approveLicence');
             else
                 $custom_actions[] =
                     Action::make('approved')
-                    ->label(__('filament-panels::pages/licence.approved'))->disabled(true);
+                        ->label(__('filament-panels::pages/licence.approved'))->disabled(true);
         }
         return $custom_actions;
     }
 
     public function approveLicence(): void
     {
-        if(auth()->user()->hasRole('admin'))
-        {
+        if (auth()->user()->hasRole('admin')) {
             $this->record->approved = true;
             $this->record->save();
+            $this->emit('approveLicence');
         }
     }
 }
