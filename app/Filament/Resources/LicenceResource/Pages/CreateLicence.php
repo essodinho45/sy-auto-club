@@ -11,23 +11,25 @@ use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Components\FileUpload;
 
 
-class CreateLicence extends CreateRecord {
+class CreateLicence extends CreateRecord
+{
     use CreateRecord\Concerns\HasWizard;
     protected static string $resource = LicenceResource::class;
-    protected function getSteps(): array {
+    protected function getSteps(): array
+    {
         return [
             Step::make('General')->columns([
                 'default' => 1,
                 'xl' => 4,
                 '2xl' => 8,
             ])->schema([
-                        TextInput::make('licence_number')
-                            ->required()
-                            ->label(__('filament-panels::pages/licence.form.licence_number'))
-                            ->maxLength(255),
-                        DatePicker::make('valid_to')
-                            ->label(__('filament-panels::pages/licence.form.valid_to'))
-                            ->required(),
+                        // TextInput::make('licence_number')
+                        //     ->required()
+                        //     ->label(__('filament-panels::pages/licence.form.licence_number'))
+                        //     ->maxLength(255),
+                        // DatePicker::make('valid_to')
+                        //     ->label(__('filament-panels::pages/licence.form.valid_to'))
+                        //     ->required(),
                         TextInput::make('driving_licence_number')
                             ->label(__('filament-panels::pages/licence.form.driving_licence_number'))
                             ->required()
@@ -63,7 +65,8 @@ class CreateLicence extends CreateRecord {
                 'default' => 1,
                 'xl' => 4,
                 '2xl' => 8,
-            ])->schema([TextInput::make('first_name_en')
+            ])->schema([
+                        TextInput::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en'))
                             ->required()
                             ->maxLength(255),
@@ -91,18 +94,19 @@ class CreateLicence extends CreateRecord {
                 'default' => 1,
                 'xl' => 4,
                 '2xl' => 8,
-            ])->schema([TextInput::make('phone')
+            ])->schema([
+                        TextInput::make('phone')
                             ->label(__('filament-panels::pages/licence.form.phone'))
-                            ->required()
+                            ->required(false)
                             ->maxLength(255),
                         TextInput::make('email')
                             ->label(__('filament-panels::pages/licence.form.email'))
-                            ->required()
+                            ->required(false)
                             ->email()
                             ->maxLength(255),
                         TextInput::make('note')
                             ->label(__('filament-panels::pages/licence.form.note'))
-                            ->required()
+                            ->required(false)
                             ->columnSpan(2)
                             ->maxLength(255),
                     ]),
@@ -135,7 +139,8 @@ class CreateLicence extends CreateRecord {
                     ]),
         ];
     }
-    protected function mutateFormDataBeforeCreate(array $data): array {
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
         unset($data['personal']);
         unset($data['licence_f']);
         unset($data['licence_b']);
