@@ -17,7 +17,7 @@ class LicenceAPIController extends Controller
                 if ($licence->{$item})
                     $licence->{$item} = env('APP_URL') . '/' . 'storage' . '/' . $licence->{$item};
             }
-            return json_encode($licence);
+            return json_encode($licence, JSON_UNESCAPED_UNICODE);
         }
         return response('all approved licences read before', 400);
     }
