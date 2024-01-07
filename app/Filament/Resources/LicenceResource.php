@@ -46,17 +46,23 @@ class LicenceResource extends Resource
                     ->label(__('filament-panels::pages/licence.form.first_name')),
                 Tables\Columns\TextColumn::make('second_name')
                     ->label(__('filament-panels::pages/licence.form.second_name')),
-                Tables\Columns\TextColumn::make('licence_number')
-                    ->label(__('filament-panels::pages/licence.form.licence_number')),
-                Tables\Columns\TextColumn::make('valid_to')
-                    ->label(__('filament-panels::pages/licence.form.valid_to')),
+                Tables\Columns\TextColumn::make('driving_licence_number')
+                    ->label(__('filament-panels::pages/licence.form.driving_licence_number')),
+                Tables\Columns\TextColumn::make('driving_valid_to')
+                    ->label(__('filament-panels::pages/licence.form.driving_valid_to')),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label(__('filament-panels::pages/licence.user')),
             ])
             ->filters([
                 //
             ])
-            ->recordClasses(fn(Licence $record) => match ($record->approved) {
-                1 => 'bg-green-500/50',
-                default => null,
+            ->recordClasses(function (Licence $record) {
+                if ($record->api_read)
+                    return 'bg-blue-500/40 hover:!bg-blue-500/50 dark:hover:!bg-blue-500/50';
+                elseif ($record->approved)
+                    return 'bg-green-500/40 hover:!bg-green-500/50 dark:hover:!bg-green-500/50';
+                else
+                    return null;
             })
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -186,5 +192,11 @@ class LicenceResource extends Resource
             'view' => Pages\ViewLicence::route('/{record}'),
             'edit' => Pages\EditLicence::route('/{record}/edit'),
         ];
+    }
+    public static function getEloquentQuery(): Builder
+    {
+        if (auth()->user()->hasRole('admin'))
+            return parent::getEloquentQuery();
+        return parent::getEloquentQuery()->where('user_id', auth()->id());
     }
 }

@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::table('licences', function (Blueprint $table) {
             $table->dropColumn('licence_number');
             $table->dropColumn('valid_to');
-            $table->dropColumn('phone');
-            $table->dropColumn('email');
-            $table->dropColumn('note');
+            $table->string('phone')->nullable()->change();
+            $table->string('email')->nullable()->change();
+            $table->string('note')->nullable()->change();
         });
     }
 

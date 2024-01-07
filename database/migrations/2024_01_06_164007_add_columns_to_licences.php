@@ -11,9 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('licences', function (Blueprint $table) {
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->string('note')->nullable();
+            $table->boolean('api_read')->default(false);
         });
     }
 

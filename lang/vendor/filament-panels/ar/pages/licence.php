@@ -6,6 +6,7 @@ return [
     'licences' => 'الرخص',
     'approve' => 'تأكيد الرخصة',
     'approved' => 'الرخصة مؤكدة',
+    'user' => 'المستخدم',
 
     'wizard' => [
         'general' => 'عام',
