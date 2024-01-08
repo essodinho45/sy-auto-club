@@ -12,7 +12,6 @@ class LicenceAPIController extends Controller
         $licence = Licence::query()->where('approved', '=', true)
             ->where('api_read', '=', false)->orderByDesc('created_at')->first();
         if ($licence) {
-            dd($licence);
             foreach (['personal', 'licence_f', 'licence_b', 'licence1', 'licence2', 'id_f', 'id_b'] as $item) {
                 if ($licence->{$item})
                     $licence->{$item} = env('APP_URL') . '/' . 'storage' . '/' . $licence->{$item};
