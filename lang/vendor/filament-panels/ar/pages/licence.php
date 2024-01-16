@@ -7,6 +7,7 @@ return [
     'approve' => 'تأكيد الرخصة',
     'approved' => 'الرخصة مؤكدة',
     'user' => 'المستخدم',
+    'status' => 'الحالة',
 
     'wizard' => [
         'general' => 'عام',

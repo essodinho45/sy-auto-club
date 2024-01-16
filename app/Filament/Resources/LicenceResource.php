@@ -52,6 +52,14 @@ class LicenceResource extends Resource
                     ->label(__('filament-panels::pages/licence.form.driving_valid_to')),
                 Tables\Columns\TextColumn::make('user.name')
                     ->label(__('filament-panels::pages/licence.user')),
+                Tables\Columns\TextColumn::make('status')
+                    ->label(__('filament-panels::pages/licence.status'))
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'مقروءة' => 'info',
+                        'مؤكدة' => 'success',
+                        'قيد الانتظار' => 'gray',
+                    })
             ])
             ->filters([
                 //
@@ -89,10 +97,6 @@ class LicenceResource extends Resource
                         '2xl' => 6,
                     ])
                     ->schema([
-                        Infolists\Components\TextEntry::make('licence_number')
-                            ->label(__('filament-panels::pages/licence.form.licence_number')),
-                        Infolists\Components\TextEntry::make('valid_to')
-                            ->label(__('filament-panels::pages/licence.form.valid_to')),
                         Infolists\Components\TextEntry::make('driving_licence_number')
                             ->label(__('filament-panels::pages/licence.form.driving_licence_number')),
                         Infolists\Components\TextEntry::make('driving_valid_to')

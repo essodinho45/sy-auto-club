@@ -39,6 +39,8 @@ class EditLicence extends EditRecord
                         //     ->required(),
                         TextInput::make('driving_licence_number')
                             ->label(__('filament-panels::pages/licence.form.driving_licence_number'))
+                            ->alphaNum()
+                            ->helperText('يرجى استخدام أحرف وأرقام فقط بدون رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         DatePicker::make('driving_valid_to')
@@ -46,18 +48,26 @@ class EditLicence extends EditRecord
                             ->required(),
                         TextInput::make('first_name')
                             ->label(__('filament-panels::pages/licence.form.first_name'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('second_name')
                             ->label(__('filament-panels::pages/licence.form.second_name'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('father_name')
                             ->label(__('filament-panels::pages/licence.form.father_name'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('birth_place')
                             ->label(__('filament-panels::pages/licence.form.birth_place'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         DatePicker::make('birth_date')
@@ -65,6 +75,8 @@ class EditLicence extends EditRecord
                             ->required(),
                         TextInput::make('residence_place')
                             ->label(__('filament-panels::pages/licence.form.residence_place'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                     ]),
@@ -75,18 +87,26 @@ class EditLicence extends EditRecord
             ])->schema([
                         TextInput::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('second_name_en')
                             ->label(__('filament-panels::pages/licence.form.second_name_en'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('father_name_en')
                             ->label(__('filament-panels::pages/licence.form.father_name_en'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('birth_place_en')
                             ->label(__('filament-panels::pages/licence.form.birth_place_en'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         DatePicker::make('birth_date_en')
@@ -94,6 +114,8 @@ class EditLicence extends EditRecord
                             ->required(),
                         TextInput::make('residence_place_en')
                             ->label(__('filament-panels::pages/licence.form.residence_place_en'))
+                            ->alpha()
+                            ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                     ]),
@@ -104,6 +126,8 @@ class EditLicence extends EditRecord
             ])->schema([
                         TextInput::make('phone')
                             ->label(__('filament-panels::pages/licence.form.phone'))
+                            ->numeric()
+                            ->mask('0999 999 999')
                             ->required(false)
                             ->maxLength(255),
                         TextInput::make('email')
@@ -124,30 +148,44 @@ class EditLicence extends EditRecord
             ])->schema([
                         FileUpload::make('personal')
                             ->label(__('filament-panels::pages/licence.form.files.personal'))
+                            ->maxSize(2048)
                             ->image()
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->required(false),
                         FileUpload::make('licence_f')
                             ->label(__('filament-panels::pages/licence.form.files.licence_f'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                         FileUpload::make('licence_b')
                             ->label(__('filament-panels::pages/licence.form.files.licence_b'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                         FileUpload::make('licence1')
                             ->label(__('filament-panels::pages/licence.form.files.licence1'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                         FileUpload::make('licence2')
                             ->label(__('filament-panels::pages/licence.form.files.licence2'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                         FileUpload::make('id_f')
                             ->label(__('filament-panels::pages/licence.form.files.id_f'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                         FileUpload::make('id_b')
                             ->label(__('filament-panels::pages/licence.form.files.id_b'))
+                            ->maxSize(2048)
+                            ->helperText('الحجم الأعظمي للملف هو 2 ميغابايت.')
                             ->image()
                             ->required(false),
                     ]),
