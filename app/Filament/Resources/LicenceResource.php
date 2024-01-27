@@ -22,6 +22,7 @@ use Filament\Infolists\Infolist;
 class LicenceResource extends Resource
 {
     protected static ?string $model = Licence::class;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
@@ -193,6 +194,7 @@ class LicenceResource extends Resource
         return [
             'index' => Pages\ListLicences::route('/'),
             'create' => Pages\CreateLicence::route('/create'),
+            'archive' => Pages\ArchivedLicences::route('/archive'),
             'view' => Pages\ViewLicence::route('/{record}'),
             'edit' => Pages\EditLicence::route('/{record}/edit'),
         ];

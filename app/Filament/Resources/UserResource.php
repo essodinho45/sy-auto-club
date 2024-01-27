@@ -16,14 +16,18 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
+    protected static ?int $navigationSort = 3;
     protected static ?string $model = User::class;
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
         return __('filament-panels::pages/user.users');
     }
-    public static function getModelLabel(): string {
+    public static function getModelLabel(): string
+    {
         return __('filament-panels::pages/user.user');
     }
-    public static function getPluralModelLabel(): string {
+    public static function getPluralModelLabel(): string
+    {
         return __('filament-panels::pages/user.users');
     }
     protected static ?string $navigationIcon = 'heroicon-o-users';
@@ -33,27 +37,27 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                ->label(__('filament-panels::pages/user.form.name'))
-                ->required(),
+                    ->label(__('filament-panels::pages/user.form.name'))
+                    ->required(),
                 Forms\Components\TextInput::make('email')
                     ->label(__('filament-panels::pages/user.form.email'))
-                ->required()
-                ->email(),
+                    ->required()
+                    ->email(),
                 Forms\Components\TextInput::make('password')
-                ->label(__('filament-panels::pages/user.form.password'))
-                ->required()->rules(['min:8', 'confirmed'])
-                ->password(),
+                    ->label(__('filament-panels::pages/user.form.password'))
+                    ->required()->rules(['min:8', 'confirmed'])
+                    ->password(),
                 Forms\Components\TextInput::make('password_confirmation')
-                ->label(__('filament-panels::pages/user.form.password_confirm'))
-                ->required()
-                ->password(),
+                    ->label(__('filament-panels::pages/user.form.password_confirm'))
+                    ->required()
+                    ->password(),
                 Forms\Components\Select::make('roles.name')
-                ->label(__('filament-panels::pages/user.form.role'))
-                ->options([
-                    'admin' => __('filament-panels::pages/user.roles.admin'),
-                    'data-entry' => __('filament-panels::pages/user.roles.data')
-                ])
-                ->required()
+                    ->label(__('filament-panels::pages/user.form.role'))
+                    ->options([
+                        'admin' => __('filament-panels::pages/user.roles.admin'),
+                        'data-entry' => __('filament-panels::pages/user.roles.data')
+                    ])
+                    ->required()
             ]);
     }
 
@@ -73,10 +77,10 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()->disabled(fn (Model $record): bool => $record->id == 1),
+                Tables\Actions\DeleteAction::make()->disabled(fn(Model $record): bool => $record->id == 1),
             ])
             ->bulkActions([
-//                Tables\Actions\BulkActionGroup::make([
+                //                Tables\Actions\BulkActionGroup::make([
 //                    Tables\Actions\DeleteBulkAction::make(),
 //                ]),
             ])

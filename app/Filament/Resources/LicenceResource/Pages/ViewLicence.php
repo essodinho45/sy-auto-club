@@ -33,6 +33,5 @@ class ViewLicence extends ViewRecord
             $this->record->approved = true;
             $this->record->save();
         }
-
     }
 }

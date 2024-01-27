@@ -4,6 +4,8 @@ return [
 
     'licence' => 'الرخصة',
     'licences' => 'الرخص',
+    'archived_licences' => 'الرخص المؤرشفة',
+    'archive' => 'أرشفة',
     'approve' => 'تأكيد الرخصة',
     'approved' => 'الرخصة مؤكدة',
     'user' => 'المستخدم',
