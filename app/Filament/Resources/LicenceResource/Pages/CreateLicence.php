@@ -5,6 +5,7 @@ namespace App\Filament\Resources\LicenceResource\Pages;
 use App\Filament\Resources\LicenceResource;
 use App\Rules\AlphaWithSpaces;
 use Filament\Actions;
+use Filament\Forms\Set;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Forms\Components\DatePicker;
@@ -74,6 +75,8 @@ class CreateLicence extends CreateRecord
                                     range(date("Y"), config('settings.start_year'))
                                 )
                             )
+                            ->live()
+                            ->afterStateUpdated(fn(Set $set, ?int $state) => $set('birth_date_en', $state))
                             ->searchable()
                             ->required(),
                         TextInput::make('residence_place')
@@ -122,7 +125,6 @@ class CreateLicence extends CreateRecord
                                     range(date("Y"), config('settings.start_year'))
                                 )
                             )
-                            ->default(date('Y'))
                             ->searchable()
                             ->required(),
                         TextInput::make('residence_place_en')
