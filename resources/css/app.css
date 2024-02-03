@@ -5,3 +5,7 @@
 [x-cloak] {
     display: none;
 }
+
+.fi-select-input>option {
+    @apply dark:bg-gray-900;
+}

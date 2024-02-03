@@ -27,7 +27,7 @@ return [
         'father_name' => 'اسم الأب',
         'birth_place' => 'مكان الولادة',
         'birth_date' => 'تاريخ الولادة',
-        'residence_place' => 'مكن الإقامة',
+        'residence_place' => 'مكان الإقامة',
         'first_name_en' => 'First Name',
         'second_name_en' => 'Second Name',
         'father_name_en' => 'Father Name',

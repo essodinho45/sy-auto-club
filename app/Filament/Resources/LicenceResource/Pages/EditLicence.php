@@ -3,10 +3,12 @@
 namespace App\Filament\Resources\LicenceResource\Pages;
 
 use App\Filament\Resources\LicenceResource;
+use App\Rules\AlphaWithSpaces;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\EditRecord\Concerns\HasWizard;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Components\FileUpload;
@@ -48,34 +50,41 @@ class EditLicence extends EditRecord
                             ->required(),
                         TextInput::make('first_name')
                             ->label(__('filament-panels::pages/licence.form.first_name'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('second_name')
                             ->label(__('filament-panels::pages/licence.form.second_name'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('father_name')
                             ->label(__('filament-panels::pages/licence.form.father_name'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('birth_place')
                             ->label(__('filament-panels::pages/licence.form.birth_place'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
-                        DatePicker::make('birth_date')
+                        Select::make('birth_date')
                             ->label(__('filament-panels::pages/licence.form.birth_date'))
+                            ->options(
+                                array_combine(
+                                    range(date("Y"), config('settings.start_year')),
+                                    range(date("Y"), config('settings.start_year'))
+                                )
+                            )
+                            ->searchable()
                             ->required(),
                         TextInput::make('residence_place')
                             ->label(__('filament-panels::pages/licence.form.residence_place'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف عربية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
@@ -87,34 +96,41 @@ class EditLicence extends EditRecord
             ])->schema([
                         TextInput::make('first_name_en')
                             ->label(__('filament-panels::pages/licence.form.first_name_en'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('second_name_en')
                             ->label(__('filament-panels::pages/licence.form.second_name_en'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('father_name_en')
                             ->label(__('filament-panels::pages/licence.form.father_name_en'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('birth_place_en')
                             ->label(__('filament-panels::pages/licence.form.birth_place_en'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
-                        DatePicker::make('birth_date_en')
+                        Select::make('birth_date_en')
                             ->label(__('filament-panels::pages/licence.form.birth_date_en'))
+                            ->options(
+                                array_combine(
+                                    range(date("Y"), config('settings.start_year')),
+                                    range(date("Y"), config('settings.start_year'))
+                                )
+                            )
+                            ->searchable()
                             ->required(),
                         TextInput::make('residence_place_en')
                             ->label(__('filament-panels::pages/licence.form.residence_place_en'))
-                            ->alpha()
+                            ->rules([new AlphaWithSpaces()])
                             ->helperText('يرجى استخدام أحرف انكليزية فقط بدون أرقام أو رموز إضافية.')
                             ->required()
                             ->maxLength(255),
